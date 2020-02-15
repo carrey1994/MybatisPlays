@@ -10,6 +10,14 @@ public class User {
 	String password;
 	String mobile;
 	
+	public User(int id, String address, String email, String password, String mobile) {
+		this.id = id;
+		this.address = address;
+		this.email = email;
+		this.password = password;
+		this.mobile = mobile;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
