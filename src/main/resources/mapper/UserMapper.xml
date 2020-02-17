@@ -10,13 +10,36 @@
     </resultMap>
 
     <select id="getUsers" resultMap="UserMap">
-        SELECT id, email, password, mobile, address FROM users
+        SELECT id, email, password, mobile, address FROM users;
     </select>
 
     <insert id="addUser" parameterType="com.android.james.spring.boot.start.User">
-        INSERT INTO users
-        VALUES (#{email}, #{password}, #{mobile}, #{address})
+        INSERT INTO users ( email, password, mobile, address )
+        VALUES (#{email}, #{password}, #{mobile}, #{address});
     </insert>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM users WHERE id = #{id};
+    </delete>
+
+    <update id="updateUser" parameterType="com.android.james.spring.boot.start.User">
+        UPDATE users
+        <set>
+            <if test="email !=null">
+                email=#{email},
+            </if>
+            <if test="password !=null">
+                password=#{password},
+            </if>
+            <if test="address != null">
+                address=#{address},
+            </if>
+            <if test="mobile != null">
+                mobile=#{mobile}
+            </if>
+        </set>
+        WHERE id=#{id};
+    </update>
 
 
 </mapper>
